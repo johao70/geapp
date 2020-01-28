@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Alert, TouchableOpacity } from "react-native";
 import axios from 'axios';
 
-const API_URL = "http://192.168.1.7:4000/api/geapp";
+const API_URL = "http://172.16.24.42:4000/api/geapp";
 
 export default class App extends Component {
   state = {
     longitud: null,
-    latitud: null
+    latitud: null,
+    fecha: null
   };
 
   geo = () => {
@@ -18,9 +19,18 @@ export default class App extends Component {
 
         this.setState({ longitud, latitud });
 
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        const yyyy = today.getFullYear();
+        
+        const actual = yyyy + '-' + mm + '-' + dd;
+        this.setState({ fecha : actual })
+
         const data = JSON.stringify({
           longitud: this.state.longitud,
-          latitud: this.state.latitud
+          latitud: this.state.latitud,
+          fecha: this.state.fecha
         })
 
         axios.post(API_URL, this.state)

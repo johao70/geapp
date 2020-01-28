@@ -13,5 +13,11 @@ module.exports = db.sequelize.define("ubicacion", {
   },
   longitud: {
     type: Sequelize.STRING
+  },
+  fecha: {
+    type: Sequelize.DATE
+  },
+  nombre: {
+    type: Sequelize.STRING
   }
 });
