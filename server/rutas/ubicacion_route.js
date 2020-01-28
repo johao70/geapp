@@ -17,6 +17,7 @@ router.get("/geapp", (req, res, next) => {
 
 router.post("/geapp", (req, res, next) => {
   const datos = {
+    fecha: req.body.fecha,
     latitud: req.body.latitud,
     longitud: req.body.longitud
   };
