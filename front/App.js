@@ -22,7 +22,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={this.geo}>
-        <Text style={styles.text}>Mostrar Ubicación</Text>
+        <Text style={styles.text}>Ubicación</Text>
       </TouchableOpacity>
     </View>
   );

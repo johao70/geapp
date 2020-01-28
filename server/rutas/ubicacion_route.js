@@ -2,23 +2,23 @@ const express = require("express");
 
 const router = express.Router();
 
-const Book = require("../models/book");
+const Ubicacion = require("../models/ubicacion");
 
-router.get("/books", (req, res, next) => {
+router.get("/geapp", (req, res, next) => {
   const { query } = req;
-  Book.findAll( { where: query } )
-    .then(books => {
-      res.json(books);
+  Ubicacion.findAll( { where: query } )
+    .then(ubi => {
+      res.json(ubi);
     })
     .catch(err => {
       res.send("error: " + err);
     });
 });
 
-router.post("/books", (req, res, next) => {
+router.post("/geapp", (req, res, next) => {
   const datos = {
-    nombre: req.body.nombre,
-    autor: req.body.autor
+    latitud: req.body.latitud,
+    longitud: req.body.longitud
   };
 
   if (!datos) {
@@ -28,7 +28,7 @@ router.post("/books", (req, res, next) => {
         error: "Datos incorrectos"
       });
   } else {
-    Book.create(datos)
+    Ubicacion.create(datos)
       .then(data => {
         res.send(data);
       })

@@ -2,16 +2,16 @@ const Sequelize = require("sequelize");
 
 const db = require("../database/db");
 
-module.exports = db.sequelize.define("libro", {
+module.exports = db.sequelize.define("ubicacion", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  nombre: {
+  latitud: {
     type: Sequelize.STRING
   },
-  autor: {
+  longitud: {
     type: Sequelize.STRING
   }
 });

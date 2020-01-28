@@ -2,7 +2,7 @@ const express = require("express");
 
 const bodyParser = require("body-parser");
 
-const books = require("./rutas/books");
+const ubicacion = require("./rutas/ubicacion_route");
 const cors = require("cors");
 
 const PORT = 4000;
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   res.send("Bienvenidos al Yavirac!");
 });
-app.use("/api", books);
+app.use("/api", ubicacion);
 
 app.listen(PORT, () => {
   console.log(`Servidor en el puerto: ${PORT}`);
