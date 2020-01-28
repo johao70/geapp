@@ -17,7 +17,6 @@ router.get("/geapp", (req, res, next) => {
 
 router.post("/geapp", (req, res, next) => {
   const datos = {
-    fecha: req.body.fecha,
     latitud: req.body.latitud,
     longitud: req.body.longitud
   };
@@ -31,7 +30,10 @@ router.post("/geapp", (req, res, next) => {
   } else {
     Ubicacion.create(datos)
       .then(data => {
-        res.send(data);
+        return res.status(200).json({
+          ok: true,
+          datos: data
+        })
       })
       .catch(err => {
         res.json("error: " + err);

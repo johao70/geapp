@@ -6,21 +6,9 @@ const API_URL = "http://192.168.1.7:4000/api/geapp";
 
 export default class App extends Component {
   state = {
-    fecha: '',
     longitud: null,
     latitud: null
   };
-
-  componentDidMount() {
-    var that = this;
-    var date = new Date().getDate();
-    var month = new Date().getMonth() + 1;
-    var year = new Date().getFullYear();
-    that.setState({
-      fecha:
-        date + '-' + month + '-' + year,
-    });
-  }
 
   geo = () => {
     navigator.geolocation.getCurrentPosition(
@@ -31,16 +19,13 @@ export default class App extends Component {
         this.setState({ longitud, latitud });
 
         const data = JSON.stringify({
-          fecha: this.state.fecha,
           longitud: this.state.longitud,
           latitud: this.state.latitud
         })
 
-        alert(data)
-
         axios.post(API_URL, this.state)
         .then(response => {
-          alert(JSON.stringify(response))
+          alert(JSON.stringify(response.data.ok))
         })
       },
       error => Alert.alert(error.message),
